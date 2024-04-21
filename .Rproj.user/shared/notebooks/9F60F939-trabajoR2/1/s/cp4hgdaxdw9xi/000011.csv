@@ -1,0 +1,5 @@
+"0","ggplot(proc_data, aes(x = demo_mejor)) +"
+"0","  geom_bar(fill = ""blue"", color = ""black"") +"
+"0","  labs(title = ""Gráfico de Barras de Preferencia a la Democracia"","
+"0","       x = ""Preferencia a la Democracia"","
+"0","       y = ""Frecuencia"") "

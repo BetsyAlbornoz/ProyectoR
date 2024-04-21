@@ -1,0 +1,131 @@
+{
+    "sources": [
+        {
+            "DOI": "10.7440/colombiaint99.2019.02",
+            "URL": "https://revistas.uniandes.edu.co/index.php/colombia-int/article/view/2898",
+            "author": [
+                {
+                    "family": "Rovira Kaltwasser",
+                    "given": "Cristóbal"
+                }
+            ],
+            "container-title": "Colombia Internacional",
+            "id": "rovirakaltwasser2019",
+            "issue": "99",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019,
+                        7
+                    ]
+                ]
+            },
+            "language": "pt",
+            "page": "29-61",
+            "title": "La (sobre)adaptación programática de la derecha chilena y la irrupción de la derecha populista radical",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Mudde",
+                    "given": "Cas"
+                }
+            ],
+            "id": "mudde2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "language": "eng",
+            "publisher": "Polity",
+            "publisher-place": "Cambridge, GB Medford, MA",
+            "title": "The far right today",
+            "type": "book"
+        },
+        {
+            "DOI": "10.26851/RUCP.30.1.2",
+            "URL": "http://rucp.cienciassociales.edu.uy/index.php/rucp/article/view/475",
+            "container-title": "Revista uruguaya de ciencias políticas",
+            "id": "(aún)la2021",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        6,
+                        10
+                    ]
+                ]
+            },
+            "title": "(AÚN) LA EXCEPCIÓN y NO LA REGLA: LA DERECHA POPULISTA RADICAL EN AMÉRICA LATINA",
+            "title-short": "(AÚN) LA EXCEPCIÓN y NO LA REGLA",
+            "type": "article-journal",
+            "volume": "30"
+        },
+        {
+            "id": "violaciónDDHH",
+            "title": "Violación a los derechos humanos",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.2307/422412",
+            "URL": "https://www.jstor.org/stable/422412?origin=crossref",
+            "author": [
+                {
+                    "family": "Weyland",
+                    "given": "Kurt"
+                }
+            ],
+            "container-title": "Comparative Politics",
+            "id": "weyland2001",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2001,
+                        10
+                    ]
+                ]
+            },
+            "page": "1",
+            "title": "Clarifying a contested concept: Populism in the study of latin american politics",
+            "title-short": "Clarifying a contested concept",
+            "type": "article-journal",
+            "volume": "34"
+        },
+        {
+            "DOI": "10.4067/S0718-50492020000100248",
+            "URL": "http://www.scielo.cl/scielo.php?script=sci_arttext&pid=S0718-50492020000100248&lng=en&nrm=iso&tlng=en",
+            "author": [
+                {
+                    "family": "Climent-Sanjuan",
+                    "given": "Víctor"
+                },
+                {
+                    "family": "Montaner-Goetzenberger",
+                    "given": "Mirian"
+                }
+            ],
+            "container-title": "Izquierdas",
+            "id": "climent-sanjuan2020",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "0-0",
+            "title": "Los partidos populistas de extrema derecha en España: Un análisis sociológico comparado",
+            "title-short": "Los partidos populistas de extrema derecha en España",
+            "type": "article-journal",
+            "volume": "49"
+        }
+    ],
+    "project_biblios": []
+}

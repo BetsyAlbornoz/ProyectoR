@@ -1,0 +1,83 @@
+---
+title: "ProyectoR"
+author: "Betsy Albornoz"
+format: html
+editor: visual
+bibliography: Trabajo1.bib
+link-citations: true 
+---
+
+## El avance de la derecha chilena y su amenaza a la percepción de la democracia 
+
+La derecha chilena ha experimentado una evolución significativa desde la dictadura militar de 1973, para esto tuvo que sufrir una adaptación pragmatica y así mantenerse vigente en la politica contemporanea actual:
+
+"Frente a ciertos temas la derecha chilena ha mostrado una capacidad de acomodación ideológica importante, de manera que si bien no resulta insensato postular que ha experimentado un gradual proceso de transformación programática, esto no implica que la derecha esté dispuesta a transar los pilares del modelo neoliberal" @rovirakaltwasser2019 Un ejemplo de ello es su voluntad a ser parte de los dos procesos constitucionales en el país, tanto en el año 2019 como el pasado 2022.
+
+Una referencia del ascenso de la derecha, es que a nivel regional podemos visualizar a José Antonio Kast en Chile, en 2017, y la elección como presidente de Jair Bolsonaro en 2018, en Brasil @mudde2019 así consideramos a Chile y Brasil como países donde el discurso populista de derecha ha ido emergiendo: “Aunque también están comenzando a surgir candidatos de derecha en otros países latinoamericanos, los casos de Brasil y Chile presentan los ejemplos más claros de una derecha radical populista en la región” @(aún)la2021 Cabe aclarar que "el populismo generalmente se identifica con las derechas, porque alude a las formaciones de extrema derecha" @climent-sanjuan2020
+
+Volviendo a la dictadura militar de 1973 que vivió Chile, este fue liderado por el general Augusto Pinochet. La dictadura militar que se instaló a partir de entonces se caracterizó por un modelo autoritario, inspirado en las doctrinas económicas neoliberales y en los principios de la extrema derecha, tales como el anticomunismo, la prohibición de los partidos políticos, la violación de los derechos humanos:
+
+“La violación sistemática de los derechos humanos se llevó a cabo a través de los órganos estatales ya existentes (Fuerzas Armadas, Carabineros de Chile, Policía de Investigaciones), mientras que otros fueron creados especialmente para tal efecto, como fue el caso de la Dirección de Inteligencia Nacional (DINA, 1974-1977), Comando Conjunto (1975-1977) y Central Nacional de Informaciones (CNI, 1977-1990, sucesora de la DINA)” @violaciónDDHH
+
+La transición abrupta de la Unidad Popular a la dictadura militar, no solo marcó un quiebre en la estructura política del país, sino que también proporcionó una polarización en la sociedad chilena, no solo en el sistema partidario, sino que también en la ciudadanía chilena.
+
+### Hipótesis Central:
+
+Se espera que existe una relación a medida que la derecha y simpatizantes vayan aumentando, la percepción sobre la democracia se vea afectada de manera negativa.
+
+### Relevancia del problema:
+
+Este tema es importante de investigar ya que de confirmar la hipótesis se logra identificar una creciente amenaza a la democracia, con ella las instituciones democráticas y su estabilidad.
+
+Por otro lado, como país se corre el peligro de retroceder en el tiempo y volver a expresiones dictatoriales de poder: “Los líderes populistas frecuentemente promueven políticas que socavan los derechos de los grupos minoritarios, lo que refleja un aspecto fundamental de la ideología populista que retrata a 'el pueblo como homogéneo y excluye a aquellos que no encajan en esta estrecha definición.” @weyland2001
+
+A su vez, puede traer consigo consecuencias económicas negativas y pone en riesgo la gobernanza efectiva, ya que se debilita la capacidad del gobierno para abordar desafíos al dar soluciones de carácter simplista a problemas complejos. “Los líderes populistas a menudo socavan la gobernanza eficaz al atacar a instituciones independientes, incluidos los medios de comunicación, el poder judicial y las organizaciones de la sociedad civil, que son esenciales para mantener la transparencia y la rendición de cuentas democráticas.” @populist2017
+
+## Análisis de datos 
+
+Para el análisis de datos del presente trabajo, utilizaremos la base de datos de Proyecto de Opinión Pública de América Latina (LAPOP, por sus siglas en inglés) correspondiente al año 2018.
+
+#### Variables a utilizar:
+
+-   Preferencia a la democracia ante cualquier otro régimen político (Variable dependiente)
+
+-   Identificación política y satisfacción de democracia (Variable independiente)
+
+#### ¿Qué se busca?
+
+Como la identificación política y la satisfacción de democracia influyen en la preferencia a la democracia ante cualquier otro régimen político. Comprobar si existe y cómo la identificación política de una persona y su nivel de satisfacción con la democracia pueden influir en su preferencia por la democracia sobre otros regímenes políticos
+
+#### Tabla de frecuencia: 
+
+```{r}
+library(dplyr)
+
+proc_data %>% group_by(simpatizante) %>% summarise(frecuencia = n(), .groups = "drop")
+
+```
+
+La tabla de frecuencia nos indica que el Partido Socialista (PS) es el que cuenta con más simpatizantes en el grupo encuestado teniendo 28 simpatizantes , sin embargo, Renovación Nacional (RN) lo sigue con 27 simpatizantes. Esto podría indicar una polarización (izquiersa/derecha) en el grupo de personas encuestado.
+
+#### Nivel de satisfacción por la democracia
+
+```{r}
+ggplot(proc_data, aes(x = satisfacción)) +
+  geom_bar(fill = "purple", color = "black") +
+  labs(title = "Gráfico de Barras de satisfacción por la democracia",
+       x = "Satisfacción",
+       y = "Frecuencia")
+```
+
+La tabla nos indica que hay una fuerte sentimiento de insatisfacción respecto a la democracia en el país, ya que se evidencia el nivel de preferencia más alto es "insatisfecho" siendo tambien el más frecuente, seguido por "satisfecho" no existiendo una diferencia muy abrumante.
+
+#### Preferencia a la democracia
+
+```{r}
+ggplot(proc_data, aes(x = demo_mejor)) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Gráfico de Barras de Preferencia a la Democracia",
+       x = "Preferencia a la Democracia",
+       y = "Frecuencia") 
+```
+
+La tabla nos indica que hay una fuerte inclinación hacia la democracia, ya que el nivel de preferencia más alto "muy de acuerdo" es también el más frecuente, es decir, la mayoría de las personas encuestadas prefieren un sistema democrático.
