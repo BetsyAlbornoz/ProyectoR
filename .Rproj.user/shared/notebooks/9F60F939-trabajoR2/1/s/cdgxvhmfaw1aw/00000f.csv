@@ -1,0 +1,6 @@
+"0",""
+"0","pacman::p_load(dplyr, guaguas, ggplot2, sjmisc, car, sjlabelled, stargazer, haven)"
+"0","rm(list=ls())       "
+"0","options(scipen=999) "
+"0","LAPOP <- read_dta(""input/Chile LAPOP AmericasBarometer 2019 v1.0_W.dta"")"
+"0","find_var(data = LAPOP,""democracia"")"

@@ -70,15 +70,18 @@ sjmisc::descr(proc_data,
               show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
   kable(.,"markdown")
 summarytools::dfSummary(proc_data, plain.ascii = FALSE)
+
 tabla_frecuencias <- proc_data %>%
   group_by(simpatizante) %>%
   summarise(frecuencia = n(), .groups = "drop")
 print(tabla_frecuencias)
+
 ggplot(proc_data, aes(x = satisfacción)) +
   geom_bar(fill = "purple", color = "black") +
   labs(title = "Gráfico de Barras de satisfacción por la democracia",
        x = "Satisfacción",
        y = "Frecuencia")
+
 ggplot(proc_data, aes(x = demo_mejor)) +
   geom_bar(fill = "blue", color = "black") +
   labs(title = "Gráfico de Barras de Preferencia a la Democracia",

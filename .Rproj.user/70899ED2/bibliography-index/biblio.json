@@ -125,6 +125,28 @@
             "title-short": "Los partidos populistas de extrema derecha en España",
             "type": "article-journal",
             "volume": "49"
+        },
+        {
+            "collection-number": "1",
+            "collection-title": "Routledge research in communication studies",
+            "editor": [
+                {
+                    "family": "Aalberg",
+                    "given": "Toril"
+                }
+            ],
+            "id": "populist2017",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "publisher": "Routledge",
+            "publisher-place": "New York, NY",
+            "title": "Populist political communication in europe",
+            "type": "book"
         }
     ],
     "project_biblios": []

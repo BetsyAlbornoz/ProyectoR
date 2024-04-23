@@ -1,0 +1,302 @@
+"0","proc_data <- LAPOP %>% select(ing4, pn4, vb11)"
+"0","sjlabelled::get_label(proc_data)"
+"1","                                                         ing4 "
+"1","
+"
+"1","""La democracia es mejor que cualquier otra forma de gobierno"" "
+"1","
+"
+"1","                                                          pn4 "
+"1","
+"
+"1","                             ""Satisfacción con la democracia"" "
+"1","
+"
+"1","                                                         vb11 "
+"1","
+"
+"1","                        ""Identificación con partido político"" "
+"1","
+"
+"0","frq(proc_data$ing4)"
+"1","[31mLa democracia es mejor que cualquier otra forma de gobierno (x)[39m[34m <numeric>[39m 
+[34m# total N=1638 valid N=1550 mean=5.04 sd=1.61[39m
+
+Value |             Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------------------
+    1 | Muy en desacuerdo |  64 |  3.91 |    4.13 |   4.13
+    2 |                 2 |  42 |  2.56 |    2.71 |   6.84
+    3 |                 3 | 119 |  7.26 |    7.68 |  14.52
+    4 |                 4 | 335 | 20.45 |   21.61 |  36.13
+    5 |                 5 | 363 | 22.16 |   23.42 |  59.55
+    6 |                 6 | 234 | 14.29 |   15.10 |  74.65
+    7 |    Muy de acuerdo | 393 | 23.99 |   25.35 | 100.00
+ <NA> |              <NA> |  88 |  5.37 |    <NA> |   <NA>
+"
+"0","frq(proc_data$pn4)"
+"1","[31mSatisfacción con la democracia (x)[39m[34m <numeric>[39m 
+[34m# total N=1638 valid N=1552 mean=2.68 sd=0.77[39m
+
+Value |               Label |   N | Raw % | Valid % | Cum. %
+------------------------------------------------------------
+    1 |   Muy satisfecho(a) |  75 |  4.58 |    4.83 |   4.83
+    2 |       Satisfecho(a) | 564 | 34.43 |   36.34 |  41.17
+    3 |     Insatisfecho(a) | 694 | 42.37 |   44.72 |  85.89
+    4 | Muy insatisfecho(a) | 219 | 13.37 |   14.11 | 100.00
+ <NA> |                <NA> |  86 |  5.25 |    <NA> |   <NA>
+"
+"0","frq(proc_data$vb11)"
+"1","[31mIdentificación con partido político (x)[39m[34m <numeric>[39m 
+[34m# total N=1638 valid N=149 mean=1315.96 sd=26.93[39m
+
+Value |                           Label |    N | Raw % | Valid % | Cum. %
+-------------------------------------------------------------------------
+ 1301 |              Partido Socialista |   28 |  1.71 |   18.79 |  18.79
+ 1302 |       Partido por la Democracia |    2 |  0.12 |    1.34 |  20.13
+ 1303 |     Partido Demócrata Cristiano |   18 |  1.10 |   12.08 |  32.21
+ 1304 |             Renovación Nacional |   27 |  1.65 |   18.12 |  50.34
+ 1305 |   Unión Demócrata Independiente |   18 |  1.10 |   12.08 |  62.42
+ 1306 |               Partido Humanista |    2 |  0.12 |    1.34 |  63.76
+ 1307 |               Partido Comunista |   19 |  1.16 |   12.75 |  76.51
+ 1308 | Partido Radical Socialdemócrata |    1 |  0.06 |    0.67 |  77.18
+ 1309 |          Revolución Democrática |    7 |  0.43 |    4.70 |  81.88
+ 1310 |    Evolución Política (Evopoli) |    3 |  0.18 |    2.01 |  83.89
+ 1377 |                            Otro |   24 |  1.47 |   16.11 | 100.00
+ <NA> |                            <NA> | 1489 | 90.90 |    <NA> |   <NA>
+"
+"0","proc_data <- proc_data %>% rename(""demo_mejor""=ing4,"
+"0","                                  ""satisfacción""=pn4,"
+"0","                                  ""simpatizante""=vb11)"
+"0","proc_data$demo_mejor <- as.factor(proc_data$demo_mejor)"
+"0","proc_data$simpatizante <- as.factor(proc_data$simpatizante)"
+"0","proc_data$satisfacción <- as.factor(proc_data$satisfacción)"
+"0","proc_data$simpatizante <- dplyr::recode(proc_data$simpatizante, "
+"0","                                        ""1301"" = ""PS"","
+"0","                                        ""1302"" = ""PPD"","
+"0","                                        ""1303"" = ""DC"","
+"0","                                        ""1304"" = ""RN"","
+"0","                                        ""1305"" = ""UDI"","
+"0","                                        ""1306"" = ""PH"","
+"0","                                        ""1307"" = ""PC"","
+"0","                                        ""1308"" = ""PRSD"","
+"0","                                        ""1309"" = ""RD"","
+"0","                                        ""1310"" = ""EVOPOLI"","
+"0","                                        ""1377"" = ""OTRO"")"
+"0","frq(proc_data$simpatizante)"
+"1","[31mx[39m[34m <categorical>[39m 
+[34m# total N=1638 valid N=149 mean=5.33 sd=3.38[39m
+
+Value   |    N | Raw % | Valid % | Cum. %
+-----------------------------------------
+PS      |   28 |  1.71 |   18.79 |  18.79
+PPD     |    2 |  0.12 |    1.34 |  20.13
+DC      |   18 |  1.10 |   12.08 |  32.21
+RN      |   27 |  1.65 |   18.12 |  50.34
+UDI     |   18 |  1.10 |   12.08 |  62.42
+PH      |    2 |  0.12 |    1.34 |  63.76
+PC      |   19 |  1.16 |   12.75 |  76.51
+PRSD    |    1 |  0.06 |    0.67 |  77.18
+RD      |    7 |  0.43 |    4.70 |  81.88
+EVOPOLI |    3 |  0.18 |    2.01 |  83.89
+OTRO    |   24 |  1.47 |   16.11 | 100.00
+<NA>    | 1489 | 90.90 |    <NA> |   <NA>
+"
+"0","proc_data$satisfacción <- dplyr::recode(proc_data$satisfacción, "
+"0","                                        ""1"" = ""Muy satisfecho"","
+"0","                                        ""2"" = ""Satisfecho"","
+"0","                                        ""3"" = ""Insatisfecho"","
+"0","                                        ""4"" = ""Muy insatisfecho"")"
+"0","frq(proc_data$satisfacción)"
+"1","[31mx[39m[34m <categorical>[39m 
+[34m# total N=1638 valid N=1552 mean=2.68 sd=0.77[39m
+
+Value            |   N | Raw % | Valid % | Cum. %
+-------------------------------------------------
+Muy satisfecho   |  75 |  4.58 |    4.83 |   4.83
+Satisfecho       | 564 | 34.43 |   36.34 |  41.17
+Insatisfecho     | 694 | 42.37 |   44.72 |  85.89
+Muy insatisfecho | 219 | 13.37 |   14.11 | 100.00
+<NA>             |  86 |  5.25 |    <NA> |   <NA>
+"
+"0","proc_data$demo_mejor <- dplyr::recode(proc_data$demo_mejor, "
+"0","                                      ""1"" = ""Muy en "
+"0","                                             desacuerdo"","
+"0","                                      ""2"" = ""Medianamente "
+"0","                                             en desacuerdo"","
+"0","                                      ""3"" = ""Desacuerdo"","
+"0","                                      ""4"" = ""Ni de acuerdo"
+"0","                                            ni en desacuerdo"","
+"0","                                      ""5"" = ""De acuerdo"","
+"0","                                      ""6"" = ""Medianamente "
+"0","                                             de acuerdo"","
+"0","                                      ""7"" = ""Muy de acuerdo"")"
+"0","frq(proc_data$demo_mejor)"
+"1","[31mx[39m[34m <categorical>[39m 
+[34m# total N=1638 valid N=1550 mean=5.04 sd=1.61[39m
+
+Value                                                                       |   N | Raw % | Valid % | Cum. %
+------------------------------------------------------------------------------------------------------------
+Muy en 
+                                             desacuerdo            |  64 |  3.91 |    4.13 |   4.13
+Medianamente 
+                                             en desacuerdo   |  42 |  2.56 |    2.71 |   6.84
+Desacuerdo                                                                  | 119 |  7.26 |    7.68 |  14.52
+Ni de acuerdo
+                                            ni en desacuerdo | 335 | 20.45 |   21.61 |  36.13
+De acuerdo                                                                  | 363 | 22.16 |   23.42 |  59.55
+Medianamente 
+                                             de acuerdo      | 234 | 14.29 |   15.10 |  74.65
+Muy de acuerdo                                                              | 393 | 23.99 |   25.35 | 100.00
+<NA>                                                                        |  88 |  5.37 |    <NA> |   <NA>
+"
+"0","proc_data <-as.data.frame(proc_data)"
+"0","stargazer(proc_data, type=""text"")"
+"1","
+"
+"1","=================================
+"
+"1","Statistic"
+"1"," "
+"1","N"
+"1"," "
+"1","Mean"
+"1"," "
+"1","St. Dev."
+"1"," "
+"1","Min"
+"1"," "
+"1","Max"
+"1","
+"
+"1","=================================
+"
+"0","save(proc_data,file = ""input/LAPOPproc.RData"")"
+"0","install.packages(""sjPlot"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ‘C:/Users/beth8/AppData/Local/R/win-library/4.3’
+(as ‘lib’ is unspecified)
+"
+"2","probando la URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/sjPlot_2.8.15.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1538444 bytes (1.5 MB)
+"
+"2","downloaded 1.5 MB
+
+"
+"1","package ‘sjPlot’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\beth8\AppData\Local\Temp\RtmpM7EndM\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(sjPlot)"
+"0","sjt.xtab(proc_data$satisfacción, proc_data$simpatizante)"
+"0",""
+"0","pacman::p_load(sjlabelled,"
+"0","               dplyr, "
+"0","               stargazer, "
+"0","               sjmisc, "
+"0","               summarytools, "
+"0","               kableExtra, "
+"0","               sjPlot, "
+"0","               corrplot, "
+"0","               sessioninfo, "
+"0","               ggplot2) "
+"0","stargazer(proc_data,type = ""text"")"
+"1","
+"
+"1","=================================
+"
+"1","Statistic"
+"1"," "
+"1","N"
+"1"," "
+"1","Mean"
+"1"," "
+"1","St. Dev."
+"1"," "
+"1","Min"
+"1"," "
+"1","Max"
+"1","
+"
+"1","=================================
+"
+"0","sjmisc::descr(proc_data)"
+"1","
+"
+"1","[34m## Basic descriptive statistics
+
+[39m"
+"1",""
+"1","          var"
+"1","        type"
+"1","        label"
+"1","    n"
+"1"," NA.prc"
+"1"," mean"
+"1","   sd"
+"1","   se"
+"1"," md"
+"1"," trimmed"
+"1","     range"
+"1"," iqr"
+"1","  skew"
+"1","
+"
+"1","   demo_mejor"
+"1"," categorical"
+"1","   demo_mejor"
+"1"," 1550"
+"1","   5.37"
+"1"," 5.04"
+"1"," 1.61"
+"1"," 0.04"
+"1","  5"
+"1","    5.19"
+"1","   6 (1-7)"
+"1","   3"
+"1"," -0.56"
+"1","
+"
+"1"," satisfacción"
+"1"," categorical"
+"1"," satisfacción"
+"1"," 1552"
+"1","   5.25"
+"1"," 2.68"
+"1"," 0.77"
+"1"," 0.02"
+"1","  3"
+"1","    2.66"
+"1","   3 (1-4)"
+"1","   1"
+"1"," -0.01"
+"1","
+"
+"1"," simpatizante"
+"1"," categorical"
+"1"," simpatizante"
+"1","  149"
+"1","  90.90"
+"1"," 5.33"
+"1"," 3.38"
+"1"," 0.28"
+"1","  4"
+"1","    5.17"
+"1"," 10 (1-11)"
+"1","   4"
+"1","  0.45"
+"1","
+"
+"0","sjmisc::descr(proc_data,"
+"0","              show = c(""label"",""range"", ""mean"", ""sd"", ""NA.prc"", ""n"")) %>%"
+"0","  kable(.,""markdown"")"

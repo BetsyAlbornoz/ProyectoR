@@ -1,5 +1,0 @@
-"0","ggplot(proc_data, aes(x = satisfacción)) +"
-"0","  geom_bar(fill = ""purple"", color = ""black"") +"
-"0","  labs(title = ""Gráfico de Barras de satisfacción por la democracia"","
-"0","       x = ""Satisfacción"","
-"0","       y = ""Frecuencia"")"

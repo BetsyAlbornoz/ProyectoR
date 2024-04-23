@@ -7,13 +7,13 @@ bibliography: Trabajo1.bib
 link-citations: true 
 ---
 
-## El avance de la derecha chilena y su amenaza a la percepción de la democracia 
+## El avance de la derecha chilena y su amenaza a la percepción de la democracia
 
 La derecha chilena ha experimentado una evolución significativa desde la dictadura militar de 1973, para esto tuvo que sufrir una adaptación pragmatica y así mantenerse vigente en la politica contemporanea actual:
 
 "Frente a ciertos temas la derecha chilena ha mostrado una capacidad de acomodación ideológica importante, de manera que si bien no resulta insensato postular que ha experimentado un gradual proceso de transformación programática, esto no implica que la derecha esté dispuesta a transar los pilares del modelo neoliberal" @rovirakaltwasser2019 Un ejemplo de ello es su voluntad a ser parte de los dos procesos constitucionales en el país, tanto en el año 2019 como el pasado 2022.
 
-Una referencia del ascenso de la derecha, es que a nivel regional podemos visualizar a José Antonio Kast en Chile, en 2017, y la elección como presidente de Jair Bolsonaro en 2018, en Brasil @mudde2019 así consideramos a Chile y Brasil como países donde el discurso populista de derecha ha ido emergiendo: “Aunque también están comenzando a surgir candidatos de derecha en otros países latinoamericanos, los casos de Brasil y Chile presentan los ejemplos más claros de una derecha radical populista en la región” @(aún)la2021 Cabe aclarar que "el populismo generalmente se identifica con las derechas, porque alude a las formaciones de extrema derecha" @climent-sanjuan2020
+Una referencia del ascenso de la derecha, es que a nivel regional podemos visualizar a José Antonio Kast en Chile, en 2017, y la elección como presidente de Jair Bolsonaro en 2018, en Brasil @mudde2019 así consideramos a Chile y Brasil como países donde el discurso populista de derecha ha ido emergiendo: “Aunque también están comenzando a surgir candidatos de derecha en otros países latinoamericanos, los casos de Brasil y Chile presentan los ejemplos más claros de una derecha radical populista en la región” \@(aún)la2021 Cabe aclarar que "el populismo generalmente se identifica con las derechas, porque alude a las formaciones de extrema derecha" @climent-sanjuan2020
 
 Volviendo a la dictadura militar de 1973 que vivió Chile, este fue liderado por el general Augusto Pinochet. La dictadura militar que se instaló a partir de entonces se caracterizó por un modelo autoritario, inspirado en las doctrinas económicas neoliberales y en los principios de la extrema derecha, tales como el anticomunismo, la prohibición de los partidos políticos, la violación de los derechos humanos:
 
@@ -33,7 +33,7 @@ Por otro lado, como país se corre el peligro de retroceder en el tiempo y volve
 
 A su vez, puede traer consigo consecuencias económicas negativas y pone en riesgo la gobernanza efectiva, ya que se debilita la capacidad del gobierno para abordar desafíos al dar soluciones de carácter simplista a problemas complejos. “Los líderes populistas a menudo socavan la gobernanza eficaz al atacar a instituciones independientes, incluidos los medios de comunicación, el poder judicial y las organizaciones de la sociedad civil, que son esenciales para mantener la transparencia y la rendición de cuentas democráticas.” @populist2017
 
-## Análisis de datos 
+## Análisis de datos
 
 Para el análisis de datos del presente trabajo, utilizaremos la base de datos de Proyecto de Opinión Pública de América Latina (LAPOP, por sus siglas en inglés) correspondiente al año 2018.
 
@@ -47,7 +47,83 @@ Para el análisis de datos del presente trabajo, utilizaremos la base de datos d
 
 Como la identificación política y la satisfacción de democracia influyen en la preferencia a la democracia ante cualquier otro régimen político. Comprobar si existe y cómo la identificación política de una persona y su nivel de satisfacción con la democracia pueden influir en su preferencia por la democracia sobre otros regímenes políticos
 
-#### Tabla de frecuencia: 
+#### Tabla de frecuencia:
+
+```{r}
+install.packages("pacman", repos = "http://cran.us.r-project.org")
+pacman::p_load(dplyr, guaguas, ggplot2, sjmisc, car, sjlabelled, stargazer, haven)
+rm(list=ls())       
+options(scipen=999) 
+LAPOP <- read_dta("input/Chile LAPOP AmericasBarometer 2019 v1.0_W.dta")
+find_var(data = LAPOP,"democracia")
+proc_data <- LAPOP %>% select(ing4, pn4, vb11)
+sjlabelled::get_label(proc_data)
+frq(proc_data$ing4)
+frq(proc_data$pn4)
+frq(proc_data$vb11)
+proc_data <- proc_data %>% rename("demo_mejor"=ing4,
+                                  "satisfacción"=pn4,
+                                  "simpatizante"=vb11)
+proc_data$demo_mejor <- as.factor(proc_data$demo_mejor)
+proc_data$simpatizante <- as.factor(proc_data$simpatizante)
+proc_data$satisfacción <- as.factor(proc_data$satisfacción)
+proc_data$simpatizante <- dplyr::recode(proc_data$simpatizante, 
+                                        "1301" = "PS",
+                                        "1302" = "PPD",
+                                        "1303" = "DC",
+                                        "1304" = "RN",
+                                        "1305" = "UDI",
+                                        "1306" = "PH",
+                                        "1307" = "PC",
+                                        "1308" = "PRSD",
+                                        "1309" = "RD",
+                                        "1310" = "EVOPOLI",
+                                        "1377" = "OTRO")
+frq(proc_data$simpatizante)
+proc_data$satisfacción <- dplyr::recode(proc_data$satisfacción, 
+                                        "1" = "Muy satisfecho",
+                                        "2" = "Satisfecho",
+                                        "3" = "Insatisfecho",
+                                        "4" = "Muy insatisfecho")
+frq(proc_data$satisfacción)
+proc_data$demo_mejor <- dplyr::recode(proc_data$demo_mejor, 
+                                      "1" = "Muy en 
+                                             desacuerdo",
+                                      "2" = "Medianamente 
+                                             en desacuerdo",
+                                      "3" = "Desacuerdo",
+                                      "4" = "Ni de acuerdo
+                                            ni en desacuerdo",
+                                      "5" = "De acuerdo",
+                                      "6" = "Medianamente 
+                                             de acuerdo",
+                                      "7" = "Muy de acuerdo")
+frq(proc_data$demo_mejor)
+proc_data <-as.data.frame(proc_data)
+stargazer(proc_data, type="text")
+save(proc_data,file = "input/LAPOPproc.RData")
+install.packages("sjPlot", repos = "http://cran.us.r-project.org")
+library(sjPlot)
+sjt.xtab(proc_data$satisfacción, proc_data$simpatizante)
+
+pacman::p_load(sjlabelled,
+               dplyr, 
+               stargazer, 
+               sjmisc, 
+               summarytools, 
+               kableExtra, 
+               sjPlot, 
+               corrplot, 
+               sessioninfo, 
+               ggplot2) 
+stargazer(proc_data,type = "text")
+sjmisc::descr(proc_data)
+sjmisc::descr(proc_data,
+              show = c("label","range", "mean", "sd", "NA.prc", "n")) %>%
+  kable(.,"markdown")
+summarytools::dfSummary(proc_data, plain.ascii = FALSE)
+
+```
 
 ```{r}
 library(dplyr)
