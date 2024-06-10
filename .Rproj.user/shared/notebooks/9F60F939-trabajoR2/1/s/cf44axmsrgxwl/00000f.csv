@@ -1,0 +1,8 @@
+"0","# Calcular los valores predichos"
+"0","predicted_values <- predict(reg8, newdata = proc_data)"
+"0",""
+"0","# Crear el gráfico"
+"0","plot(proc_data$demo_mejor, predicted_values, "
+"0","     xlab = ""Demo Mejor"", ylab = ""Valores Predichos"","
+"0","     main = ""Valores Predichos vs. Demo Mejor"","
+"0","     pch = 16, col = ""blue"")  # Personaliza los puntos"

@@ -157,3 +157,278 @@ ggplot(proc_data, aes(x = demo_mejor)) +
 ```
 
 La tabla nos indica que hay una fuerte inclinación hacia la democracia, ya que el nivel de preferencia más alto "muy de acuerdo" es también el más frecuente, es decir, la mayoría de las personas encuestadas prefieren un sistema democrático.
+
+```{r}
+library(haven)
+library(pacman)
+pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, sjmisc, summarytools, kableExtra, sjPlot, corrplot, sessioninfo, ggplot2, tidyverse, psych)
+
+install.packages("texreg")
+library(texreg)
+
+install.packages("ggpubr")
+library(ggpubr)
+
+install.packages("BiocManager")
+library(BiocManager)
+```
+
+#### Construcción de escala:
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(psych)
+
+print(colnames(proc_data))
+
+clean_data <- proc_data %>%
+  select(demo_mejor, satisfacción, simpatizante) %>%
+  mutate(across(everything(), as.numeric)) %>%  
+  drop_na()
+
+print(summary(clean_data))
+
+alpha_result <- alpha(clean_data)
+
+print(alpha_result)
+```
+
+```{r}
+
+library(dplyr)
+library(tidyr)
+
+
+proc_data <- proc_data %>%
+  select(demo_mejor, satisfacción, simpatizante) %>%
+  mutate(across(everything(), as.numeric)) %>%  
+  drop_na()
+
+
+proc_data <- proc_data %>%
+  rowwise() %>%
+  mutate(cohesion_barrial = sum(demo_mejor, satisfacción, simpatizante, na.rm = TRUE))
+
+summary(proc_data$cohesion_barrial)
+
+```
+
+```{r}
+ggplot(proc_data, aes(x = cohesion_barrial)) +
+  geom_histogram(binwidth = 0.6, colour = "black", fill = "yellow") +
+  theme_bw() +
+  xlab("Cohesión barrial") +
+  ylab("Cantidad")
+
+
+```
+
+*Interpretación:*
+
+El histograma tiene una forma asimetrica teniendo la moda alrededor de 10 en la escala de cohesipin barrial, lo que nos indica que existe un grupo significativo de encuestados con una cohesión moderada, por otro lado, las barras se encuentran agrupadas en el rango 5 a 15 principalmente
+
+#### Asociación de variables:
+
+```{r}
+sjmisc::descr(proc_data,
+      show = c("label","range", "mean", "sd", "NA.prc", "n"))%>% 
+      kable(.,"markdown") 
+```
+
+```{r}
+M <- cor(proc_data, use = "complete.obs") 
+diag(M) = NA 
+rownames(M) <- c("A. Cohesión barrial",
+                         "B. demo_mejor",
+                         "C. satisfacción",
+                         "D. simpatizante")
+colnames(M) <-c("(A)", "(B)","(C)", "(D)")
+```
+
+```{r}
+corrplot::corrplot(M,
+  method = "color", 
+  addCoef.col = "#000390", 
+  type = "upper", 
+  tl.col = "black", 
+  na.label = "-")
+```
+
+*Interpretaciones:*
+
+**A y B**: La correlación al ser de de -0.27, nos indica una correlación negativa débil, por lo que es correcto decir que a medida que aumenta la cohesión barrial la preferencia por la democracia tiende a disminuir un poco
+
+**A y C:** La correlación es de -0.07, con un valor tan bajo nos indica que no existe correlación entre las variables cohesión barrial y satisfacción.
+
+**A y D:** Tienen una correlación postiva debil (0.3) por lo que a medida que aumenta la cohesión barrial, la simpatía politica aumenta de manera ligera
+
+**B y C:** No hay correlación entre las variables, 0.08 es un valor muy bajo.
+
+**B y D:** Tienen una correlación positiva muy débil, (0.17)
+
+**C y D:** Tienen una correlación positiva muy fuerte, a medida que aumenta la satisfacción con la democracia la simpatóa política aumenta significativamente. Su correlación es de 0.91
+
+## Regresiones
+
+### Regresión lineal simple:
+
+```{r}
+reg2 <- lm(cohesion_barrial ~ demo_mejor, data = proc_data)
+reg3 <- lm(cohesion_barrial ~ satisfacción, data = proc_data)
+reg4 <- lm(cohesion_barrial ~ simpatizante, data = proc_data)
+
+knitreg(list(reg2, reg3, reg4), 
+        custom.model.names = c("Modelo 1",
+                               "Modelo 2",
+                               "Modelo 3"),
+        custom.note = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+        custom.coef.names = c("Intercepto", 
+                              "Demo Mejor",
+                              "Satisfacción", 
+                              "Simpatizante"),
+        caption = "Cohesión Barrial",
+        caption.above = TRUE)
+
+```
+
+*Interpretación:*
+
+**Modelo 1: (El modelo explica solo el 9% de variabilidad de la variable dependiente)**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea 9.63
+
+-   Demo Mejor: Por cada unidad de aumento en demo_mejor la variable dependiente aumente en 0.72 unidades de manera constante
+
+**Modelo 2: (El modelo explica solo el 3% de variabilidad de la variable dependiente)**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea 11.45
+
+-   Satisfacción: Por cada unidad de aumento en la variable satisfacción la variable dependiente aumenta en 0.81 unidades
+
+**Modelo 3: (El modelo explica solo el 83% de variabilidad de la variable dependiente)**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea 8.35.
+
+-   Simpatizante: Por cada unidad de aumento en la variable simpatizante la variable dependiente aumenta en 0.99 unidades
+
+### Regresión lineal múltiple:
+
+```{r}
+reg5 <- lm(cohesion_barrial ~ demo_mejor + satisfacción, data = proc_data)
+reg6 <- lm(cohesion_barrial ~ demo_mejor + simpatizante, data = proc_data)
+reg7 <- lm(cohesion_barrial ~ satisfacción + simpatizante, data = proc_data)
+reg8 <- lm(cohesion_barrial ~ demo_mejor + satisfacción + simpatizante, data = proc_data)
+
+knitreg(list(reg5, reg6, reg7, reg8), 
+        custom.model.names = c("Modelo 1",
+                               "Modelo 2",
+                               "Modelo 3",
+                               "Modelo 4"),
+        custom.note = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+        custom.coef.names = c("Intercepto", 
+                              "Demo Mejor",
+                              "Satisfacción", 
+                              "Simpatizante"),
+        caption = "Cohesión Barrial",
+        caption.above = TRUE)
+
+```
+
+*Interpretación*:
+
+**Modelo 1: (El modelo explica solo un 16% de variabilidad de la variable dependiente)**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea 5.19
+
+-   Demo Mejor: Por cada unidad de aumento en la variable demo_mejor la variable dependiente aumenta en 0.89 unidades
+
+**Modelo 2: (El modelo explica el 96% de variabilidad de la variable dependiente)**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea 3.37.
+
+-   Satisfacción: Por cada unidad de aumento en la variable satisfaccióm la variable dependiente aumenta en 0.81 unidades
+
+**Modelo 3: (El modelo explica el 84% de variabilidad de la variable dependiente)**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea 7.12.
+
+-   Simpatizante: Por cada unidad de aumento en la variable simpatizante la variable dependiente aumenta en 0.98 unidades
+
+**Modelo 4:**
+
+-   Intercepto: Se espera que cuando todas las variables son 0, el valor de la dependiente sea -0.00.
+
+-   Al tener R\^2 en 1.00 esto nos indica que el modelo explica al 100% la variabilidad de la variable
+
+## Gráficos:
+
+```{r}
+plot_model(reg8, 
+           title = "", 
+           show.values = TRUE, 
+           dot.size = 3, 
+           line.size = 1, 
+           value.size = 4, 
+           spacing = 1, 
+           vline.color = "red", 
+           axis.labels = rev(c("Demo Mejor",
+                               "Satisfacción",
+                               "Simpatizante")), 
+           show.legend = FALSE) + 
+  theme_bw()
+
+```
+
+*Interpretación*
+
+Los puntos representan los coeficientes de regresión estimados para cada variable mientras que las lineas representan los intervalos de confianza.
+
+Las tres variables dan como coeficiente 1.00 lo que significa que por cada unidad de incremento de cada variable, la variable dependiente aumentaría 1.00 unidades
+
+## Diagramas de dispersión 
+
+```{r}
+
+predicted_values <- predict(reg8, newdata = proc_data)
+
+
+plot(proc_data$demo_mejor, predicted_values, 
+     xlab = "Demo Mejor", ylab = "Valores Predichos",
+     main = "Valores Predichos vs. Demo Mejor",
+     pch = 16, col = "blue") 
+
+abline(reg8$coefficients[1], reg8$coefficients[2], col = "red")
+
+```
+
+Considerando que la línea roja representa un mejor ajuste al modelo de regresión lineal y al observar que los puntos azules no siguen de manera exacta a esta linea, se puede concluir que demo_mejor por si solo no es suficiente para predecir con precisión la variable dependiente del modelo
+
+```{r}
+predicted_values <- predict(reg8, newdata = proc_data)
+
+
+plot(proc_data$satisfacción, predicted_values, 
+     xlab = "Satisfacción con la democracia como régimen", ylab = "Valores Predichos",
+     main = "Valores Predichos vs. Satisfacción con la democracia como régimen",
+     pch = 16, col = "blue") 
+
+abline(reg8$coefficients[1], reg8$coefficients[2], col = "red")
+
+```
+
+Se logra apreciar una tendencia ascendente a medida que aumenta el valor en el eje X, lo que nos indica una correlación positiva entre la satisfacción con la democracia como regimen politico y los valores predichos. Aún así, los puntos azules se encuentran dispersos lo que indica que puede haber una considerable variabilidad en los datos
+
+```{r}
+predicted_values <- predict(reg8, newdata = proc_data)
+
+
+plot(proc_data$simpatizante, predicted_values, 
+     xlab = "Simpatizante con partido político", ylab = "Valores Predichos",
+     main = "Valores Predichos vs. Simpatizante con partido político",
+     pch = 16, col = "blue") 
+
+abline(reg8$coefficients[1], reg8$coefficients[2], col = "red")
+```
+
+Se visualiza una tendencia ascendente a medida que aumenta el valor del eje X, esto puede significar una correlación positiva entre ser simpatizante de un partido político y los valores predichos. De igual manera, los puntos azules se encuentran dispersos, lo que puede indicar mucha variabilidad en los datos.

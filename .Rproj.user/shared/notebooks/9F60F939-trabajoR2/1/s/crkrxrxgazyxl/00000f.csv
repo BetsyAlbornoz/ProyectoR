@@ -1,0 +1,37 @@
+"0","reg5 <- lm(cohesion_barrial ~ demo_mejor + satisfacción, data = proc_data)"
+"0","reg6 <- lm(cohesion_barrial ~ demo_mejor + simpatizante, data = proc_data)"
+"0","reg7 <- lm(cohesion_barrial ~ satisfacción + simpatizante, data = proc_data)"
+"0","reg8 <- lm(cohesion_barrial ~ demo_mejor + satisfacción + simpatizante, data = proc_data)"
+"0",""
+"0","knitreg(list(reg5, reg6, reg7, reg8), "
+"0","        custom.model.names = c(""Modelo 1"","
+"0","                               ""Modelo 2"","
+"0","                               ""Modelo 3"","
+"0","                               ""Modelo 4""),"
+"0","        custom.note = ""*** p < 0.001; ** p < 0.01; * p < 0.05"","
+"0","        custom.coef.names = c(""Intercepto"", "
+"0","                              ""Demo Mejor"","
+"0","                              ""Satisfacción"", "
+"0","                              ""Simpatizante""),"
+"0","        caption = ""Cohesión Barrial"","
+"0","        caption.above = TRUE)"
+"2","Warning: essentially perfect fit: summary may be unreliable"
+"1","
+============================================================
+              Modelo 1    Modelo 2    Modelo 3    Modelo 4  
+------------------------------------------------------------
+Intercepto      5.19 **     3.37 ***    7.12 ***   -0.00 ***
+               (1.67)      (0.26)      (0.48)      (0.00)   
+Demo Mejor      0.89 ***    0.87 ***                1.00 ***
+               (0.19)      (0.04)                  (0.00)   
+Satisfacción    1.29 ***                0.47 **     1.00 ***
+               (0.37)                  (0.16)      (0.00)   
+Simpatizante                1.01 ***    0.98 ***    1.00 ***
+                           (0.02)      (0.04)      (0.00)   
+------------------------------------------------------------
+R^2             0.16        0.96        0.84        1.00    
+Adj. R^2        0.15        0.96        0.83        1.00    
+Num. obs.     147         147         147         147       
+============================================================
+*** p < 0.001; ** p < 0.01; * p < 0.05
+"

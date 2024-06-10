@@ -1,3 +1,9 @@
+"0","pacman::p_load(dplyr, guaguas, ggplot2, sjmisc, car, sjlabelled, stargazer, haven)
+rm(list=ls())       
+options(scipen=999) 
+LAPOP <- read_dta(""input/Chile LAPOP AmericasBarometer 2019 v1.0_W.dta"")
+find_var(data = LAPOP,""democracia"")
+"
 "0","proc_data <- LAPOP %>% select(ing4, pn4, vb11)"
 "0","sjlabelled::get_label(proc_data)"
 "1","                                                         ing4 "
@@ -171,7 +177,7 @@ Muy de acuerdo                                                              | 39
 "1","=================================
 "
 "0","save(proc_data,file = ""input/LAPOPproc.RData"")"
-"0","install.packages(""sjPlot"")"
+"0","install.packages(""sjPlot"", repos = ""http://cran.us.r-project.org"")"
 "2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
 
 https://cran.rstudio.com/bin/windows/Rtools/
@@ -179,12 +185,12 @@ https://cran.rstudio.com/bin/windows/Rtools/
 "2","Installing package into ‘C:/Users/beth8/AppData/Local/R/win-library/4.3’
 (as ‘lib’ is unspecified)
 "
-"2","probando la URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/sjPlot_2.8.15.zip'
+"2","probando la URL 'http://cran.us.r-project.org/bin/windows/contrib/4.3/sjPlot_2.8.16.zip'
 "
 "2","Content type 'application/zip'"
-"2"," length 1538444 bytes (1.5 MB)
+"2"," length 1436649 bytes (1.4 MB)
 "
-"2","downloaded 1.5 MB
+"2","downloaded 1.4 MB
 
 "
 "1","package ‘sjPlot’ successfully unpacked and MD5 sums checked
@@ -193,11 +199,13 @@ https://cran.rstudio.com/bin/windows/Rtools/
 "
 "1",""
 "1","The downloaded binary packages are in
-	C:\Users\beth8\AppData\Local\Temp\RtmpM7EndM\downloaded_packages"
+	C:\Users\beth8\AppData\Local\Temp\RtmpqUmI5x\downloaded_packages"
 "1",""
 "1","
 "
 "0","library(sjPlot)"
+"2","Learn more about sjPlot with 'browseVignettes(""sjPlot"")'.
+"
 "0","sjt.xtab(proc_data$satisfacción, proc_data$simpatizante)"
 "0",""
 "0","pacman::p_load(sjlabelled,"

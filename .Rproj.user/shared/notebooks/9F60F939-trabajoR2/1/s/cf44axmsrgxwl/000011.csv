@@ -1,0 +1,4 @@
+"0",""
+"0","# Añadir líneas de referencia"
+"0","abline(reg8$coefficients[1], reg8$coefficients[2], col = ""red"")"
+"0",""

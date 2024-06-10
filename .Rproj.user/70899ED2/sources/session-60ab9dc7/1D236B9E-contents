@@ -93,3 +93,109 @@ ggplot(proc_data, aes(x = demo_mejor)) +
 proc_data %>% group_by(simpatizante) %>% summarise(frecuencia = n(), .groups = "drop")
 
 
+print(colnames(proc_data))
+
+selected_data <- dplyr::select(proc_data, demo_mejor, satisfacción, simpatizante)
+print(head(selected_data))
+
+print(summary(selected_data))
+alpha(selected_data)
+
+psych::alpha(dplyr::select(proc_data, demo_mejor, satisfacción, simpatizante))
+
+table(proc_data$demo_mejor)
+table(proc_data$satisfacción)
+table(proc_data$simpatizante)
+
+
+sum(is.na(proc_data$demo_mejor))
+sum(is.na(proc_data$satisfacción))
+sum(is.na(proc_data$simpatizante))
+
+proc_data_sin_na <- na.omit(proc_data)
+proc_data_sin_na <- proc_data[complete.cases(proc_data), ]
+
+
+
+
+selected_data <- dplyr::select(proc_data, demo_mejor, satisfacción, simpatizante)
+
+clean_data <- na.omit(selected_data)
+
+print(summary(clean_data))
+
+sum(is.na(clean_data$demo_mejor))
+sum(is.na(clean_data$satisfacción))
+sum(is.na(clean_data$simpatizante))
+
+psych::alpha(dplyr::select(clean_data, demo_mejor, satisfacción, simpatizante))
+
+clean_data$demo_mejor[is.na(proc_data$demo_mejor)] <- mean(clean_data$demo_mejor, na.rm = TRUE)
+clean_data$satisfacción[is.na(proc_data$satisfacción)] <- mean(clean_data$satisfacción, na.rm = TRUE)
+clean_data$simpatizante[is.na(proc_data$simpatizante)] <- mean(clean_data$simpatizante, na.rm = TRUE)
+
+
+
+clean_data$demo_mejor[is.na(clean_data$demo_mejor)] <- mean(clean_data$demo_mejor, na.rm = TRUE)
+clean_data$satisfacción[is.na(clean_data$satisfacción)] <- mean(clean_data$satisfacción, na.rm = TRUE)
+clean_data$simpatizante[is.na(clean_data$simpatizante)] <- mean(clean_data$simpatizante, na.rm = TRUE)
+
+class(proc_data$simpatizante)
+
+proc_data$simpatizante[is.na(proc_data$simpatizante)] <- mode(proc_data$simpatizante, na.rm = TRUE)
+moda_simpatizante <- as.character(stats::mode(clean_data$simpatizante))
+
+
+moda_simpatizante <- levels(clean_data$simpatizante)[which.max(table(clean_data$simpatizante))]
+clean_data$simpatizante[is.na(clean_data$simpatizante)] <- moda_simpatizante
+
+proc_data$demo_mejor[is.na(proc_data$demo_mejor)] <- mean(proc_data$demo_mejor, na.rm = TRUE)
+proc_data$satisfacción[is.na(proc_data$satisfacción)] <- mean(proc_data$satisfacción, na.rm = TRUE)
+
+moda_demo_mejor <- levels(proc_data$demo_mejor)[which.max(table(proc_data$demo_mejor))]
+proc_data$demo_mejor[is.na(proc_data$demo_mejor)] <- moda_demo_mejor
+
+moda_satisfaccion <- levels(proc_data$satisfacción)[which.max(table(proc_data$satisfacción))]
+proc_data$satisfacción[is.na(proc_data$satisfacción)] <- moda_satisfaccion
+
+
+psych::alpha(dplyr::select(proc_data, demo_mejor, satisfacción, simpatizante))
+
+
+print(colnames(proc_data))
+
+selected_data <- dplyr::select(proc_data, demo_mejor, satisfacción, simpatizante)
+print(head(selected_data))
+
+print(summary(selected_data))
+
+clean_data <- proc_data %>%
+  select(demo_mejor, satisfacción, simpatizante) %>%
+  mutate(across(everything(), as.numeric)) %>%  
+  drop_na()
+
+print(summary(clean_data))
+
+library(psych)
+
+alpha_result <- alpha(clean_data)
+
+print(alpha_result)
+
+library(dplyr)
+library(tidyr)
+library(psych)
+
+print(colnames(proc_data))
+
+clean_data <- proc_data %>%
+  select(demo_mejor, satisfacción, simpatizante) %>%
+  mutate(across(everything(), as.numeric)) %>%  
+  drop_na()
+
+print(summary(clean_data))
+
+alpha_result <- alpha(clean_data)
+
+print(alpha_result)
+

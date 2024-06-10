@@ -1,0 +1,7 @@
+"0","predicted_values <- predict(reg8, newdata = proc_data)"
+"0",""
+"0",""
+"0","plot(proc_data$satisfacción, predicted_values, "
+"0","     xlab = ""Satisfacción con la democracia como régimen"", ylab = ""Valores Predichos"","
+"0","     main = ""Valores Predichos vs. Satisfacción con la democracia como régimen"","
+"0","     pch = 16, col = ""blue"") "

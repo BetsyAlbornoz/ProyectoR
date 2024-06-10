@@ -1,0 +1,34 @@
+"0","reg2 <- lm(cohesion_barrial ~ demo_mejor, data = proc_data)"
+"0","reg3 <- lm(cohesion_barrial ~ satisfacción, data = proc_data)"
+"0","reg4 <- lm(cohesion_barrial ~ simpatizante, data = proc_data)"
+"0",""
+"0","knitreg(list(reg2, reg3, reg4), "
+"0","        custom.model.names = c(""Modelo 1"","
+"0","                               ""Modelo 2"","
+"0","                               ""Modelo 3""),"
+"0","        custom.note = ""*** p < 0.001; ** p < 0.01; * p < 0.05"","
+"0","        custom.coef.names = c(""Intercepto"", "
+"0","                              ""Demo Mejor"","
+"0","                              ""Satisfacción"", "
+"0","                              ""Simpatizante""),"
+"0","        caption = ""Cohesión Barrial"","
+"0","        caption.above = TRUE)"
+"1","
+================================================
+              Modelo 1    Modelo 2    Modelo 3  
+------------------------------------------------
+Intercepto      9.63 ***   11.45 ***    8.35 ***
+               (1.09)      (1.09)      (0.24)   
+Demo Mejor      0.72 ***                        
+               (0.19)                           
+Satisfacción                0.81 *              
+                           (0.39)               
+Simpatizante                            0.99 ***
+                                       (0.04)   
+------------------------------------------------
+R^2             0.09        0.03        0.83    
+Adj. R^2        0.08        0.02        0.82    
+Num. obs.     147         147         147       
+================================================
+*** p < 0.001; ** p < 0.01; * p < 0.05
+"

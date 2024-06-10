@@ -1,0 +1,7 @@
+"0","M <- cor(proc_data, use = ""complete.obs"") "
+"0","diag(M) = NA "
+"0","rownames(M) <- c(""A. Cohesión barrial"","
+"0","                         ""B. demo_mejor"","
+"0","                         ""C. satisfacción"","
+"0","                         ""D. simpatizante"")"
+"0","colnames(M) <-c(""(A)"", ""(B)"",""(C)"", ""(D)"")"
