@@ -27,15 +27,15 @@ Identificar si la identificación política y la satisfacción de democracia inf
 
 ## Matriz de correlación
 
-![](C:/Users/beth8/OneDrive/Documentos/ProyectoR/ProyectoR/Output/G1.png)
+![](G1.png)
 
 ## Preferencia por la democracia según identificación política
 
-![](C:/Users/beth8/OneDrive/Documentos/ProyectoR/ProyectoR/Output/G2.png)
+![](G2.png)
 
 ## Valores predichos vs simpatizante con Partido Político
 
-![](C:/Users/beth8/OneDrive/Documentos/ProyectoR/ProyectoR/Output/G3.png)
+![](G3.png)
 
 # Conclusiones:
 
