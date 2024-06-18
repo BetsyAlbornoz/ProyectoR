@@ -162,6 +162,7 @@ La tabla nos indica que hay una fuerte inclinación hacia la democracia, ya que 
 library(haven)
 library(pacman)
 pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, sjmisc, summarytools, kableExtra, sjPlot, corrplot, sessioninfo, ggplot2, tidyverse, psych)
+options(repos = c(CRAN = "https://cran.rstudio.com"))
 
 install.packages("texreg")
 library(texreg)
@@ -432,3 +433,5 @@ abline(reg8$coefficients[1], reg8$coefficients[2], col = "red")
 ```
 
 Se visualiza una tendencia ascendente a medida que aumenta el valor del eje X, esto puede significar una correlación positiva entre ser simpatizante de un partido político y los valores predichos. De igual manera, los puntos azules se encuentran dispersos, lo que puede indicar mucha variabilidad en los datos.
+
+

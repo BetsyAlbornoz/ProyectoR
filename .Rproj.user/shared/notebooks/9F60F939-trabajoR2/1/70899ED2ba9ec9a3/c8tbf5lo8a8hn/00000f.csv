@@ -1,0 +1,8 @@
+"0",""
+"0","library(ggplot2)"
+"0","ggplot(proc_data_sin_na, aes(x = simpatizante, fill = demo_mejor)) +"
+"0","  geom_bar(position = ""fill"") +"
+"0","  labs(title = ""Preferencia por la democracia según identificación política"","
+"0","       x = ""Identificación política"","
+"0","       y = ""Proporción"") +"
+"0","  scale_fill_brewer(palette = ""Set3"")"

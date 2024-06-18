@@ -1,0 +1,33 @@
+{
+    "id": "FDF26AD2",
+    "path": "~/ProyectoR/ProyectoR/trabajoR2.qmd",
+    "project_path": "trabajoR2.qmd",
+    "type": "quarto_markdown",
+    "hash": "3211370140",
+    "contents": "",
+    "dirty": false,
+    "created": 1713634805307.0,
+    "source_on_save": true,
+    "relative_order": 3,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled2",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "444,37",
+        "scrollLine": "433",
+        "docOutlineVisible": "0",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "11240:8404",
+        "docOutlineSize": "352"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1718530242,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1718719459669,
+    "read_only": false,
+    "read_only_alternatives": []
+}

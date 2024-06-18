@@ -1,0 +1,33 @@
+{
+    "id": "D29AEF05",
+    "path": "~/ProyectoR/ProyectoR/Output/prueba.qmd",
+    "project_path": "Output/prueba.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1718519657967.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "40,73",
+        "scrollLine": "36",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "2:0",
+        "docOutlineSize": "53"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1718737468,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1718737468314,
+    "read_only": false,
+    "read_only_alternatives": []
+}
