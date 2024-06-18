@@ -15,36 +15,35 @@ Base de datos de Proyecto de Opinión Pública de América Latina (LAPOP 2018)
 
 -   Identificación política y satisfacción de democracia (Variable independiente)
 
-
 # Hipótesis Central:
 
 Se espera que existe una relación a medida que la derecha y simpatizantes vayan aumentando, la percepción sobre la democracia se vea afectada de manera negativa.
 
-
-# Objetivo: 
+# Objetivo:
 
 Identificar si la identificación política y la satisfacción de democracia influyen en la preferencia a la democracia ante cualquier otro régimen político.
 
-# Principales resultados 
+# Principales resultados
 
 ## Matriz de correlación
 
 ![](C:/Users/beth8/OneDrive/Documentos/ProyectoR/ProyectoR/Output/G1.png)
 
+## Preferencia por la democracia según identificación política
 
-## Preferencia por la democracia según identificación política 
 ![](C:/Users/beth8/OneDrive/Documentos/ProyectoR/ProyectoR/Output/G2.png)
 
-
-## Valores predichos vs simpatizante con Partido Político 
+## Valores predichos vs simpatizante con Partido Político
 
 ![](C:/Users/beth8/OneDrive/Documentos/ProyectoR/ProyectoR/Output/G3.png)
 
 # Conclusiones:
-- La satisfacción con la democracia no parece tener una fuerte relación con la preferencia por la democracia. 
-- La fuerte correlación entre satisfacción y simpatizante sugiere que estas dos variables están muy relacionadas.
-- El gráfico muestra que la identificación política está relacionada con la preferencia por la democracia, con variaciones notables entre los diferentes grupos. (G2)
 
-# Conclusiones: 
-- Existe correlación positiva entre el apoyo a un partido político y los valores predichos, lo que a medida que las personas se vuelven más partidarias de un partido político, puede existir un aumento en la métrica que estos valores predichos. (G3)
+-   La satisfacción con la democracia no parece tener una fuerte relación con la preferencia por la democracia.
+-   La fuerte correlación entre satisfacción y simpatizante sugiere que estas dos variables están muy relacionadas.
+-   El gráfico muestra que la identificación política está relacionada con la preferencia por la democracia, con variaciones notables entre los diferentes grupos. (G2)
+
+# Conclusiones:
+
+-   Existe correlación positiva entre el apoyo a un partido político y los valores predichos, lo que a medida que las personas se vuelven más partidarias de un partido político, puede existir un aumento en la métrica que estos valores predichos. (G3)
 
